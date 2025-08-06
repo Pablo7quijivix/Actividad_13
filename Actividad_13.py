@@ -38,7 +38,7 @@ try:
                 #ejemplo: '1578125':Pablo Quijivix
                 estudiantes[id] ={
                     'nombre':name,
-                    'carrera_programa':carrera_programa
+                    'carrera':carrera_programa
                 }
                 print(f"==DATOS DEL ESTUDIANTE GUARDADOS EXITOSAMENTE===")
 
@@ -46,37 +46,37 @@ try:
             case "2":#opcion 2, agregar curso con nota
                 while True:
                     id_buscado= input(f"===INGRESE EL ID DEL ESTUDIANTE===: ")
-                    id_buscado2 = id_buscado.len()
-                    if id_buscado2 == 7:
-                        print(f"__ESTUDIANTE ENCONTRADO__")
-                        break
-                    else:
-                        print(f"_____ID NO ENCONTRADO, INTENTELO DE NUEVO_____")
-                nombre_curso = input(f"===INGRESE EL NOMBRE DEL CURSO===: ")
-                nota_final = input(f"===INGRESE NOTA FINAL DEL CURSO (0-100 )===: ")
-                while True:
-                    if  0 <=nota_final<= 100:
-                        print(f"_____NOTA GUARDADA CORRECTAMENTE_____)")
-                        #el break lo colocamos en la parte del if, ya que si verifica la nota dentro del rango
-                        # ya no hay necesidad de ir al "else"
-                        break
-                    else:
-                        # MUESTRA UN MENSAJE QUE DEBE INGREASER UNA NOTA CORRECTA
-                        print(f"=== INGRESE UNA NOTA CORRECTA (0-100) ===")
-                # le asignamos el nombre del curso y la nota final al estudiante correspondiente
-                # a traves de una clave "id" y su valor "name" que es un clave que el valor es tanto el curso como la nota
-                #uso de diccionario anidado.
-                if id_buscado in estudiantes:
-                    # ejemplo: '1578125':Pablo Quijivix
-                    estudiantes[id] = {
-                        'name':name
-                        'nombre_curso': nombre_curso,
-                        'nota_final': nota_final
-                    }
+                    if id_buscado in estudiantes:
+                        es_encontrado = estudiantes[id_buscado]
+                        print(f"=====ESTUDIANTE ENCONTRADO=====")
+                        nombre_curso = input(f"===INGRESE EL NOMBRE DEL CURSO A AGREGAR===: ")
+                        while True:
+                            nota_final = input(f"===INGRESE NOTA FINAL DEL CURSO DE: {nombre_curso} (0-100 )===: ")
+                            if 0 <= nota_final <= 100:
+                                print(f"_____NOTA GUARDADA CORRECTAMENTE_____)")
+                                # el break lo colocamos en la parte del if, ya que si verifica la nota dentro del rango
+                                # ya no hay necesidad de ir al "else"
+                                break
+                            else:
+                                # MUESTRA UN MENSAJE QUE DEBE INGREASER UNA NOTA CORRECTA
+                                print(f"=== INGRESE UNA NOTA CORRECTA (0-100) ===")
+                print(f"==========CURSO:{nombre_curso} y NOTA DEL MISMO: {nota_final} GURDADAS CON EXITO PARA EL ESTUDIANTE: {es_encontrado}")
+                estudiantes[es_encontrado] = {'nombre': name, 'carrera': carrera_programa, 'nuevo_curso': {'curso_nuevo': nombre_curso,'nota_nueva': {'nueva_nota': nota_final}}}
+
+
+            case "3": #consultar estudiante e imprimir todos sus datos vinculados
+                consultar= input("_________INGRESA UN ID PARA CONSULTAR ESTUDIANTE__________: ")
+                if consultar in estudiantes:
+                    consultando= estudiantes[consultar]
+                    print(f"_____NOMBRE DEL ESTUDIANTE:{consultando['nombre']}" )
+                    print(f"_____CARRERA O PROGRAMA: {consultando['carrera']}")
+                    print(f"_____NOMBRE DEL CURSO: {consultando['nuevo_curso']['curso_nuevo']}")
+                    print(f"_____NOTA DEL CURSO DE: {consultando['nuevo_curso']['curso_nuevo']}, ES IGUAL A: {consultando['nuevo_curso']['nota_nueva']['nueva_nota']}")
+
+            case "4":
 
 
 
-            case "3": #consultar estudiante
 
 
 
